@@ -33,11 +33,11 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-medical-light-blue to-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-medical-light-blue to-background bg-[e8f0fe] p-4">
       <div className="w-full max-w-md bg-white/90 backdrop-blur-md rounded-lg shadow-2xl p-8 space-y-8">
         {/* Encabezado */}
         <div className="text-center space-y-6">
-          <div className="mx-auto w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center">
+          <div className="mx-auto w-16 h-16 bg-[#2977f5] rounded-full flex items-center justify-center">
             <Stethoscope className="w-8 h-8 text-white" />
           </div>
           <div>
@@ -93,7 +93,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
 
           <button
             type="submit"
-            className="w-full h-12 bg-gradient-primary hover:bg-primary-hover font-medium rounded-md text-white"
+            className="w-full h-12 bg-[#2977f5] hover:bg-primary-hover font-medium rounded-md text-white"
             disabled={isLoading}
           >
             {isLoading ? (
