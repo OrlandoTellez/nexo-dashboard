@@ -8,7 +8,6 @@ import { Appointments } from "./pages/Appointments.tsx";
 import { Patients } from "./pages/Patients.tsx";
 import { PatientsFlow } from "./pages/PatientsFlow.tsx";
 import { NotFound } from "./pages/NotFound.tsx";
-import "./App.css"
 const queryClient = new QueryClient();
 
 interface User {
