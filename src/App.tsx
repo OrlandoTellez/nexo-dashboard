@@ -31,17 +31,13 @@ const App = () => {
     setUser(userData);
   };
 
-  const handleLogout = () => {
-    setUser(null);
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           {!user ? (
             <LoginForm onLogin={handleLogin} />
           ) : (
-            <DashboardLayout userInfo={user} onLogout={handleLogout}>
+            <DashboardLayout userInfo={user}>
               <Routes>
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/dashboard" element={<Dashboard />} />
