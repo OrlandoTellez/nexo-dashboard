@@ -44,7 +44,6 @@ const App = () => {
                 <Route path="/appointments" element={<Appointments />} />
                 <Route path="/patients" element={<Patients />} />
                 <Route path="/patient-flow" element={<PatientsFlow />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </DashboardLayout>

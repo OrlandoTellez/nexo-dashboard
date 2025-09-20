@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Bell, Search } from "lucide-react";
 import { Input } from "../ui/Input";
+import { AppSidebar } from "./AppSidebar";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -44,10 +45,13 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
           </div>
         </div>
       </header>
+      <main className="flex">
+        <AppSidebar userInfo={userInfo} onLogout={() => { }} />
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-auto p-6">
-        {children}
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto p-6">
+          {children}
+        </main>
       </main>
     </div>
   );
