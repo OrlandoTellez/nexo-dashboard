@@ -43,7 +43,7 @@ export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
       : "hover:bg-gray-200 text-gray-700";
 
   return (
-    <div className={`flex flex-col h-screen bg-white border-r transition-all ${collapsed ? "w-16" : "w-64"}`}>
+    <div className={`flex flex-col h-screen fixed bg-white border-r transition-all ${collapsed ? "w-16" : "w-64"}`}>
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center space-x-3">
