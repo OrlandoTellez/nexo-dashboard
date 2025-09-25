@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Bell, Search } from "lucide-react";
 import { Input } from "../ui/Input";
 import { AppSidebar } from "./AppSidebar";
@@ -13,18 +13,24 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
-  const sidebarWidth = 256; // 64 * 4px = 256px (w-64)
+  const [collapsed, setCollapsed] = useState(false);
+
+  const sidebarWidth = 256; // w-64
   const sidebarCollapsedWidth = 64; // w-16
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Sidebar fijo */}
-      <AppSidebar userInfo={userInfo} onLogout={() => { }} />
+      <AppSidebar
+        userInfo={userInfo}
+        onLogout={() => {}}
+        collapsed={collapsed}
+        onToggle={() => setCollapsed(!collapsed)}
+      />
 
       {/* Contenido principal */}
       <div
-        className={`flex flex-col min-h-screen transition-all`}
-        style={{ marginLeft: sidebarWidth }}
+        className="flex flex-col min-h-screen transition-all duration-300"
+        style={{ marginLeft: collapsed ? sidebarCollapsedWidth : sidebarWidth }}
       >
         {/* Header */}
         <header className="h-16 bg-white border-b border-l border-gray-200 flex items-center justify-between px-6 sticky top-0 z-10">
@@ -58,9 +64,7 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-6">
-          {children}
-        </main>
+        <main className="flex-1 overflow-auto p-6">{children}</main>
       </div>
     </div>
   );

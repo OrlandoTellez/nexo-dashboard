@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Calendar,
@@ -8,7 +7,7 @@ import {
   Stethoscope,
   LogOut,
   UserCircle,
-  FileText
+  FileText,
 } from "lucide-react";
 
 const navigationItems = [
@@ -18,9 +17,7 @@ const navigationItems = [
   { title: "Flujo de Pacientes", url: "/patient-flow", icon: Activity },
 ];
 
-const adminItems = [
-  { title: "Reportes", url: "/reports", icon: FileText },
-];
+const adminItems = [{ title: "Reportes", url: "/reports", icon: FileText }];
 
 interface AppSidebarProps {
   userInfo: {
@@ -29,10 +26,11 @@ interface AppSidebarProps {
     hospital: string;
   };
   onLogout: () => void;
+  collapsed: boolean;
+  onToggle: () => void;
 }
 
-export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSidebarProps) {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -43,7 +41,11 @@ export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
       : "hover:bg-gray-200 text-gray-700";
 
   return (
-    <div className={`flex flex-col h-screen fixed bg-white border-r transition-all ${collapsed ? "w-16" : "w-64"}`}>
+    <div
+      className={`flex flex-col h-screen fixed bg-white border-r transition-all duration-300 ${
+        collapsed ? "w-16" : "w-64"
+      }`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center space-x-3">
@@ -58,7 +60,7 @@ export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
           )}
         </div>
         <button
-          onClick={() => setCollapsed(!collapsed)}
+          onClick={onToggle}
           className="text-gray-500 hover:text-gray-800"
         >
           {collapsed ? "»" : "«"}
@@ -68,28 +70,40 @@ export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-2 py-4 space-y-2">
         <div>
-          {!collapsed && <p className="text-xs text-gray-400 uppercase mb-2">Navegación Principal</p>}
+          {!collapsed && (
+            <p className="text-xs text-gray-400 uppercase mb-2">Navegación Principal</p>
+          )}
           {navigationItems.map((item) => (
             <NavLink
               key={item.title}
               to={item.url}
-              className={({ isActive }) => `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`}
+              className={({ isActive }) =>
+                `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`
+              }
             >
-              <item.icon className={`w-5 h-5 ${collapsed ? "mx-auto" : "mr-3"}`} />
+              <item.icon
+                className={`w-5 h-5 ${collapsed ? "mx-auto" : "mr-3"}`}
+              />
               {!collapsed && <span>{item.title}</span>}
             </NavLink>
           ))}
         </div>
 
         <div className="mt-4">
-          {!collapsed && <p className="text-xs text-gray-400 uppercase mb-2">Administración</p>}
+          {!collapsed && (
+            <p className="text-xs text-gray-400 uppercase mb-2">Administración</p>
+          )}
           {adminItems.map((item) => (
             <NavLink
               key={item.title}
               to={item.url}
-              className={({ isActive }) => `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`}
+              className={({ isActive }) =>
+                `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`
+              }
             >
-              <item.icon className={`w-5 h-5 ${collapsed ? "mx-auto" : "mr-3"}`} />
+              <item.icon
+                className={`w-5 h-5 ${collapsed ? "mx-auto" : "mr-3"}`}
+              />
               {!collapsed && <span>{item.title}</span>}
             </NavLink>
           ))}
@@ -121,7 +135,10 @@ export function AppSidebar({ userInfo, onLogout }: AppSidebarProps) {
             <button className="w-8 h-8 p-0 mx-auto">
               <UserCircle className="w-5 h-5 text-[#2977f5]" />
             </button>
-            <button onClick={onLogout} className="w-8 h-8 p-0 mx-auto text-red-600 hover:bg-red-100 rounded-lg flex items-center justify-center">
+            <button
+              onClick={onLogout}
+              className="w-8 h-8 p-0 mx-auto text-red-600 hover:bg-red-100 rounded-lg flex items-center justify-center"
+            >
               <LogOut className="w-4 h-4" />
             </button>
           </div>
