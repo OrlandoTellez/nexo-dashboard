@@ -1,9 +1,9 @@
-import { HeaderDashboard } from "../components/ui/HeaderDashboard";
-import { MetricCard } from "../components/ui/MetricCard";
-import { CriticalPatients } from "../components/ui/CriticalPatients";
-import { PatientFlowSummary } from "../components/ui/PatientFlowSummary";
+import { HeaderDashboard } from "../components/ui/dashboard/HeaderDashboard";
+import { MetricCard } from "../components/ui/dashboard/MetricCard";
+import { CriticalPatients } from "../components/ui/dashboard/CriticalPatients";
+import { PatientFlowSummary } from "../components/ui/dashboard/PatientFlowSummary";
 import { Calendar, Users, CheckCircle, TrendingUp } from "lucide-react";
-import { UpcomingAppointments } from "../components/ui/UpcomingAppointments";
+import { UpcomingAppointments } from "../components/ui/dashboard/UpcomingAppointments";
 import { Appointment } from "../types/Appointment";
 import { Patient } from "../types/Patient";
 
