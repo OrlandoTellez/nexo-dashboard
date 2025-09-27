@@ -16,7 +16,7 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   const sidebarWidth = 256; // w-64
-  const sidebarCollapsedWidth = 64; // w-16
+  const sidebarCollapsedWidth = 64; // w-18
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -33,7 +33,7 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
         style={{ marginLeft: collapsed ? sidebarCollapsedWidth : sidebarWidth }}
       >
         {/* Header */}
-        <header className="h-16 bg-white border-b border-l border-gray-200 flex items-center justify-between px-6 sticky top-0 z-10">
+        <header className="h-16 bg-[#161032] text-white border-b flex items-center justify-between px-6 sticky top-0 z-10">
           <div className="flex items-center space-x-4">
             {/* Buscador */}
             <div className="hidden md:flex items-center space-x-2 max-w-md">
@@ -50,21 +50,21 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
           {/* Notificaciones y usuario */}
           <div className="flex items-center space-x-4">
             <button className="relative">
-              <Bell className="h-5 w-5 text-gray-600" />
+              <Bell className="h-5 w-5 text-white" />
               <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full flex items-center justify-center text-white text-[10px]">
                 3
               </span>
             </button>
 
             <div className="hidden md:block text-right">
-              <p className="text-sm font-medium text-gray-800">{userInfo.name}</p>
-              <p className="text-xs text-gray-500">{userInfo.hospital}</p>
+              <p className="text-sm font-medium">{userInfo.name}</p>
+              <p className="text-xs ">{userInfo.hospital}</p>
             </div>
           </div>
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-6">{children}</main>
+        <main className="flex-1 bg-[#F1F1F1] overflow-auto p-6">{children}</main>
       </div>
     </div>
   );

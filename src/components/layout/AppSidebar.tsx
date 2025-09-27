@@ -9,6 +9,7 @@ import {
   UserCircle,
   FileText,
 } from "lucide-react";
+import logo from "../../assets/logo.svg";
 
 const navigationItems = [
   { title: "Panel Principal", url: "/dashboard", icon: BarChart3 },
@@ -42,15 +43,14 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
 
   return (
     <div
-      className={`flex flex-col h-screen fixed bg-white border-r transition-all duration-300 ${
-        collapsed ? "w-16" : "w-64"
-      }`}
+      className={`flex flex-col h-screen fixed bg-white border-r transition-all duration-300 ${collapsed ? "w-16" : "w-64"
+        }`}
     >
       {/* Header */}
       <div className="bg-[#161032] flex items-center justify-between p-4 border-b">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-[#2977f5] rounded-lg flex items-center justify-center">
-            <Stethoscope className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 bg-[#fff] rounded-lg flex items-center justify-center">
+            <img src={logo} alt="logo" className="w-6 h-6" />
           </div>
           {!collapsed && (
             <div className="flex flex-col">
@@ -61,7 +61,7 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
         </div>
         <button
           onClick={onToggle}
-          className="text-gray-500 hover:text-gray-800"
+          className="text-white"
         >
           {collapsed ? "»" : "«"}
         </button>
