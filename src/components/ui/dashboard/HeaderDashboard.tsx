@@ -9,7 +9,7 @@ interface Props {
 
 export const HeaderDashboard = ({ currentDate, currentTime, onNewAppointment }: Props) => (
   <div className="flex items-center justify-between">
-    <div>
+    <div className="bg-[#007DE3] px-9 py-2 border rounded-tl-lg rounded-br-lg text-white">
       <h1 className="text-3xl font-bold text-foreground">Panel Principal</h1>
       <p className="text-muted-foreground mt-1">{currentDate} • {currentTime}</p>
     </div>
@@ -19,8 +19,8 @@ export const HeaderDashboard = ({ currentDate, currentTime, onNewAppointment }: 
       </button>
       <button 
       onClick={onNewAppointment}
-      className="flex items-center bg-[#007DE3] font-bold px-3 py-2 text-sm text-white rounded-md">
-        <Plus className="text-white" /> Nueva Cita
+      className="flex items-center px-4 py-2 bg-[#007DE3] text-white rounded-lg hover:bg-blue-700">
+        <Plus className="text-white w-4 h-4 mr-2" /> Nueva Cita
       </button> 
     </div>
   </div>
