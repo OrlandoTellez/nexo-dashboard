@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import {
   Calendar,
   Users,
@@ -31,10 +31,7 @@ interface AppSidebarProps {
 }
 
 export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSidebarProps) {
-  const location = useLocation();
-  const currentPath = location.pathname;
 
-  const isActive = (path: string) => currentPath === path;
   const getNavCls = (active: boolean) =>
     active
       ? "bg-[#fff] text-black border-r-2 "
