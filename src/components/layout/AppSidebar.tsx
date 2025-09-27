@@ -37,8 +37,8 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
   const isActive = (path: string) => currentPath === path;
   const getNavCls = (active: boolean) =>
     active
-      ? "bg-[#2977f5] text-white font-medium border-r-2 border-blue-700"
-      : "hover:bg-gray-200 text-gray-700";
+      ? "bg-[#fff] text-[#161032]  border-r-2 "
+      : "";
 
   return (
     <div
@@ -47,15 +47,15 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
       }`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="bg-[#161032] flex items-center justify-between p-4 border-b">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-[#2977f5] rounded-lg flex items-center justify-center">
             <Stethoscope className="w-5 h-5 text-white" />
           </div>
           {!collapsed && (
             <div className="flex flex-col">
-              <h2 className="text-lg font-semibold truncate">Portal Médico</h2>
-              <p className="text-xs text-gray-500 truncate">Sistema Hospitalario</p>
+              <h2 className="text-lg font-semibold truncate text-white">Portal Médico</h2>
+              <p className="text-xs text-gray-500 truncate text-white">Sistema Hospitalario</p>
             </div>
           )}
         </div>
@@ -68,17 +68,17 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto px-2 py-4 space-y-2">
+      <nav className="bg-[#161032] flex-1 overflow-y-auto px-2 py-4 space-y-2">
         <div>
           {!collapsed && (
-            <p className="text-xs text-gray-400 uppercase mb-2">Navegación Principal</p>
+            <p className="text-xs text-white uppercase mb-2">Navegación Principal</p>
           )}
           {navigationItems.map((item) => (
             <NavLink
               key={item.title}
               to={item.url}
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`
+                `flex items-center text-white p-2 rounded-lg ${getNavCls(isActive)}`
               }
             >
               <item.icon
@@ -98,7 +98,7 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
               key={item.title}
               to={item.url}
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`
+                `flex text-white items-center p-2 rounded-lg ${getNavCls(isActive)}`
               }
             >
               <item.icon
@@ -111,7 +111,7 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t">
+      <div className="bg-[#161032] p-4 border-t">
         {!collapsed ? (
           <div className="space-y-4">
             <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
