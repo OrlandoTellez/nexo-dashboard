@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import { Bell, Search } from "lucide-react";
 import { Input } from "../ui/Input";
 import { AppSidebar } from "./AppSidebar";
+import iconProfil from "../../assets/profile.svg";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -22,7 +23,7 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gray-50">
       <AppSidebar
         userInfo={userInfo}
-        onLogout={() => {}}
+        onLogout={() => { }}
         collapsed={collapsed}
         onToggle={() => setCollapsed(!collapsed)}
       />
@@ -54,12 +55,11 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
               <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full flex items-center justify-center text-white text-[10px]">
                 3
               </span>
-            </button>
 
-            <div className="hidden md:block text-right">
-              <p className="text-sm font-medium">{userInfo.name}</p>
-              <p className="text-xs ">{userInfo.hospital}</p>
-            </div>
+            </button>
+            <button>
+              <img src={iconProfil} alt="iconProfil" className="w-6 h-6" />
+            </button>
           </div>
         </header>
 
