@@ -5,13 +5,15 @@ import { PatientQueue } from "../components/ui/patientFlow/PatientQueue";
 import { Alerts } from "../components/ui/patientFlow/Alerts";
 import { PerformanceMetrics } from "../components/ui/patientFlow/PerformanceMetrics";
 import { stages, currentFlow, queueData, priorityConfig } from "../constants/flowData";
-
+ 0
 export const PatientsFlow = () => {
   const [selectedPatient, setSelectedPatient] = useState<any>(null);
 
   const totalPatients = Object.values(currentFlow).reduce((sum, stage) => sum + stage.count, 0);
   const avgOverallWait = "18 min";
   const maxCount = Math.max(...Object.values(currentFlow).map(s => s.count));
+
+  const handlShowPatient = () => alert(selectedPatient);
 
   return (
     <div className="space-y-6">
@@ -29,6 +31,9 @@ export const PatientsFlow = () => {
           />
         ))}
       </div>
+
+      <button onClick={handlShowPatient}>Ver Paciente</button>
+      
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <PatientQueue
