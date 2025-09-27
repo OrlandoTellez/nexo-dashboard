@@ -4,7 +4,6 @@ import {
   Users,
   Activity,
   BarChart3,
-  Stethoscope,
   LogOut,
   UserCircle,
   FileText,
@@ -38,8 +37,8 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
   const isActive = (path: string) => currentPath === path;
   const getNavCls = (active: boolean) =>
     active
-      ? "bg-[#fff] text-[#161032]  border-r-2 "
-      : "";
+      ? "bg-[#fff] text-black border-r-2 "
+      : "text-white";
 
   return (
     <div
@@ -78,7 +77,7 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
               key={item.title}
               to={item.url}
               className={({ isActive }) =>
-                `flex items-center text-white p-2 rounded-lg ${getNavCls(isActive)}`
+                `flex items-center p-2 rounded-lg ${getNavCls(isActive)}`
               }
             >
               <item.icon
