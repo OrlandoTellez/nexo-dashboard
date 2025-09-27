@@ -5,10 +5,16 @@ import { Stats } from "../components/ui/patients/Stats";
 import { Filters } from "../components/ui/patients/Filters";
 import { PatientTable } from "../components/ui/patients/PatientTable";
 import { patients, statusConfig, priorityConfig } from "../constants/patientsData";
+import { PatientModal } from "../components/modals/PatientModal";
 
 export const Patients = () => {
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+
+  const handleNewAppointment = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
   const filteredPatients = patients.filter((patient) => {
     const matchesFilter = filter === "all" || patient.status === filter;
@@ -29,8 +35,11 @@ export const Patients = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <PatientHeader />
+    <div>
+      <PatientHeader onNewPatient={handleNewAppointment} />
+      {
+        openModal && <PatientModal open={openModal} onOpenChange={handleCloseModal} mode={"create"} />
+      }
       <Stats stats={stats} />
       <Filters
         filter={filter}
