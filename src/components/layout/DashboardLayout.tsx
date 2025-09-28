@@ -3,18 +3,15 @@ import { Bell, Search } from "lucide-react";
 import { Input } from "../ui/Input";
 import { AppSidebar } from "./AppSidebar";
 import iconProfil from "../../assets/profile.svg";
+import { useAuth } from "../../context/AuthContext";
 
 interface DashboardLayoutProps {
   children: ReactNode;
-  userInfo: {
-    name: string;
-    role: string;
-    hospital: string;
-  };
 }
 
-export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
+export function DashboardLayout({ children,  }: DashboardLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const {logout} = useAuth();
 
   const sidebarWidth = 256; // w-64
   const sidebarCollapsedWidth = 64; // w-18
@@ -22,8 +19,7 @@ export function DashboardLayout({ children, userInfo }: DashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <AppSidebar
-        userInfo={userInfo}
-        onLogout={() => { }}
+        onLogout={logout}
         collapsed={collapsed}
         onToggle={() => setCollapsed(!collapsed)}
       />

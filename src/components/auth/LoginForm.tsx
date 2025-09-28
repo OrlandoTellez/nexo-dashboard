@@ -1,36 +1,40 @@
 import { useState } from "react";
 import { Stethoscope, Shield, Eye, EyeOff } from "lucide-react";
 import { Input } from "../ui/Input";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-interface LoginFormProps {
-  onLogin: (credentials: { email: string; password: string; role: string }) => void;
-}
-
-export function LoginForm({ onLogin }: LoginFormProps) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export function LoginForm() {
+  const [email, setEmail] = useState('doctor@hospital.com');
+  const [password, setPassword] = useState('123456');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { login, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setError('');
+
+    if (!email || !password) {
+      setError('Por favor ingrese email y contraseña');
+      return;
+    }
 
     try {
-      // Simulación de autenticación
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      if (email && password) {
-        onLogin({ email, password, role: "doctor" });
+      const success = await login(email, password);
+      if (success) {
+        navigate('/');
       } else {
-        throw new Error("Credenciales inválidas");
+        setError('Credenciales incorrectas');
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
+    } catch {
+      setError('Error al iniciar sesión');
     }
   };
+
+  if (error) return <div>Error: {error}</div>;
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[hsl(217,91%,60%)]/50 to-[hsl(220,100%,100%)]/50">

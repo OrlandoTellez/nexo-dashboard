@@ -9,9 +9,10 @@ import {
   FileText,
 } from "lucide-react";
 import logo from "../../assets/logo.svg";
+import { useAuth } from "../../context/AuthContext";
 
 const navigationItems = [
-  { title: "Panel Principal", url: "/dashboard", icon: BarChart3 },
+  { title: "Panel Principal", url: "/", icon: BarChart3 },
   { title: "Gestión de Citas", url: "/appointments", icon: Calendar },
   { title: "Gestión de Pacientes", url: "/patients", icon: Users },
   { title: "Flujo de Pacientes", url: "/patient-flow", icon: Activity },
@@ -20,17 +21,13 @@ const navigationItems = [
 const adminItems = [{ title: "Reportes", url: "/reports", icon: FileText }];
 
 interface AppSidebarProps {
-  userInfo: {
-    name: string;
-    role: string;
-    hospital: string;
-  };
   onLogout: () => void;
   collapsed: boolean;
   onToggle: () => void;
 }
 
-export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSidebarProps) {
+export function AppSidebar({  onLogout, collapsed, onToggle }: AppSidebarProps) {
+  const { user } = useAuth();
 
   const getNavCls = (active: boolean) =>
     active
@@ -113,9 +110,9 @@ export function AppSidebar({ userInfo, onLogout, collapsed, onToggle }: AppSideb
             <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
               <UserCircle className="w-8 h-8 text-[#2977f5]" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">{userInfo.name}</p>
-                <p className="text-xs text-gray-500 truncate">{userInfo.role}</p>
-                <p className="text-xs text-gray-500 truncate">{userInfo.hospital}</p>
+                <p className="text-sm font-medium truncate">{user?.name}</p>
+                <p className="text-xs text-gray-500 truncate">{user?.role}</p>
+                <p className="text-xs text-gray-500 truncate">{user?.hospital}</p>
               </div>
             </div>
             <button
