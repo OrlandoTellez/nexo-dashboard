@@ -13,8 +13,8 @@ export function DashboardLayout({ children,  }: DashboardLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
   const {logout} = useAuth();
 
-  const sidebarWidth = 256; // w-64
-  const sidebarCollapsedWidth = 64; // w-18
+  const sidebarWidth = 254; // w-64
+  const sidebarCollapsedWidth = 63; // w-18
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -30,7 +30,7 @@ export function DashboardLayout({ children,  }: DashboardLayoutProps) {
         style={{ marginLeft: collapsed ? sidebarCollapsedWidth : sidebarWidth }}
       >
         {/* Header */}
-        <header className="h-16 bg-[#161032] text-white border-b flex items-center justify-between px-6 sticky top-0 z-10">
+        <header className="h-16 bg-[#161032] text-white border-b border-l border-gray-700 flex items-center justify-between px-6 sticky top-0 z-10">
           <div className="flex items-center space-x-4">
             {/* Buscador */}
             <div className="hidden md:flex items-center space-x-2 max-w-md">

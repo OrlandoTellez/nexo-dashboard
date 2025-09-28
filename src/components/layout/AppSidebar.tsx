@@ -31,7 +31,7 @@ export function AppSidebar({  onLogout, collapsed, onToggle }: AppSidebarProps) 
 
   const getNavCls = (active: boolean) =>
     active
-      ? "bg-[#fff] text-black border-r-2 "
+      ? "bg-[#fff] text-black "
       : "text-white";
 
   return (
@@ -40,7 +40,7 @@ export function AppSidebar({  onLogout, collapsed, onToggle }: AppSidebarProps) 
         }`}
     >
       {/* Header */}
-      <div className="bg-[#161032] flex items-center justify-between p-4 border-b">
+      <div className="bg-[#161032] flex items-center justify-between p-4 border-b border-r border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-[#fff] rounded-lg flex items-center justify-center">
             <img src={logo} alt="logo" className="w-6 h-6" />
@@ -104,7 +104,7 @@ export function AppSidebar({  onLogout, collapsed, onToggle }: AppSidebarProps) 
       </nav>
 
       {/* Footer */}
-      <div className="bg-[#161032] p-4 border-t">
+      <div className="bg-[#161032] p-4 border-t border-gray-700">
         {!collapsed ? (
           <div className="space-y-4">
             <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
