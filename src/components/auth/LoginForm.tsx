@@ -33,7 +33,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-medical-light-blue to-background bg-[e8f0fe] p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[hsl(217,91%,60%)]/50 to-[hsl(220,100%,100%)]/50">
       <div className="w-full max-w-md bg-white/90 backdrop-blur-md rounded-lg shadow-2xl p-8 space-y-8">
         {/* Encabezado */}
         <div className="text-center space-y-6">
