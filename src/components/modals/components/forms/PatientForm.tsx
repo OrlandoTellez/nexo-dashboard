@@ -10,7 +10,7 @@ interface PatientFormProps {
   isReadOnly: boolean;
 }
 
-const genders = ["Masculino", "Femenino"];
+const genders = ["M", "F", "O"];
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const priorities = ["baja", "media", "alta"];
 const statuses = ["active", "inactive", "critical"];

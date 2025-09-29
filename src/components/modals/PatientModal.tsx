@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { format } from "date-fns";
-import { es } from "date-fns/locale";
 import { PatientForm } from "./components/forms/PatientForm";
 import { ModalHeader } from "./components/ModalHeader";
 import { ModalFooter } from "./components/ModalFooter";
@@ -35,15 +34,56 @@ export const PatientModal = ({ open, onOpenChange, patient, mode }: PatientModal
 
   const isReadOnly = mode === "view";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(
-      mode === "create"
-        ? `Paciente ${formData.name} registrado el ${birthDate ? format(birthDate, "PPP", { locale: es }) : ""}`
-        : "Datos del paciente actualizados correctamente"
-    );
-    onOpenChange(false);
+
+    const payload = {
+      identity_number: formData.cedula,
+      first_name: formData.name,
+      second_name: "asdf", 
+      first_lastname: "asdf", 
+      second_lastname: "asdf",
+      gender: formData.gender,
+      birthdate: birthDate ? format(birthDate, "yyyy-MM-dd") : null,
+      blood_type: formData.bloodType,
+      phone: formData.phone,
+      email: "asfasf@gfamd.com", 
+      address: formData.address,
+      emergency_contact_name: formData.emergencyContact,
+      emergency_contact_phone: formData.emergencyPhone,
+      allergies: formData.allergies,
+      current_medications: formData.currentMedications,
+      medical_background: formData.medicalHistory,
+      priority: formData.priority === "alta" ? 1 : 0,
+      status: formData.status,
+    };
+
+    try {
+      const res = await fetch("http://localhost:3000/patients", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || "Error creando paciente");
+      }
+
+      const newPatient = await res.json();
+      console.log("Paciente creado:", newPatient);
+
+      alert(`Paciente ${newPatient.first_name} creado con éxito`);
+      onOpenChange(false);
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert(`Error al registrar paciente: ${error}`);
+    }
   };
+
 
   const titles = {
     create: "Nuevo Paciente",
@@ -62,7 +102,7 @@ export const PatientModal = ({ open, onOpenChange, patient, mode }: PatientModal
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-xl max-h-[90vh] overflow-y-auto p-6">
-        
+
         <ModalHeader
           title={titles[mode]}
           description={descriptions[mode]}
