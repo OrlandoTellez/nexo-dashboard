@@ -43,6 +43,16 @@ export const PatientForm = ({
         required
       />
 
+      <Field
+        label="Correo Electrónico *"
+        type="email"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        disabled={isReadOnly}
+        required
+      />
+
+
       {/* Fecha de Nacimiento */}
       <div className="space-y-1">
         <label className="block text-sm font-medium">Fecha de Nacimiento *</label>

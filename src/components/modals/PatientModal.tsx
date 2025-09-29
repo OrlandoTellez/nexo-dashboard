@@ -30,6 +30,7 @@ export const PatientModal = ({ open, onOpenChange, patient, mode }: PatientModal
     medicalHistory: patient?.medicalHistory || "",
     priority: patient?.priority || "baja",
     status: patient?.status || "active",
+    email: patient?.email || "",
   });
 
   const isReadOnly = mode === "view";
@@ -46,11 +47,11 @@ export const PatientModal = ({ open, onOpenChange, patient, mode }: PatientModal
       gender: formData.gender,
       birthdate: birthDate ? format(birthDate, "yyyy-MM-dd") : null,
       blood_type: formData.bloodType,
-      phone: formData.phone,
-      email: "asfasf@gfamd.com", 
+      phone: `+505${formData.phone}`,
+      email: formData.email, 
       address: formData.address,
       emergency_contact_name: formData.emergencyContact,
-      emergency_contact_phone: formData.emergencyPhone,
+      emergency_contact_phone:`+505${formData.emergencyPhone}`,
       allergies: formData.allergies,
       current_medications: formData.currentMedications,
       medical_background: formData.medicalHistory,
