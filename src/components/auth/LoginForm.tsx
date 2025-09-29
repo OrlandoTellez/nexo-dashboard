@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 export function LoginForm() {
-  const [email, setEmail] = useState('doctor@hospital.com');
+  const [username, setUsername] = useState('doctor@hospital.com');
   const [password, setPassword] = useState('123456');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -16,13 +16,13 @@ export function LoginForm() {
     e.preventDefault();
     setError('');
 
-    if (!email || !password) {
+    if (!username || !password) {
       setError('Por favor ingrese email y contraseña');
       return;
     }
 
     try {
-      const success = await login(email, password);
+      const success = await login(username, password);
       if (success) {
         navigate('/');
       } else {
@@ -57,11 +57,11 @@ export function LoginForm() {
           <div className="space-y-2">
             <label className="text-sm font-medium">Correo Electrónico</label>
             <Input
-              id="email"
-              type="email"
+              id="username"
+              type="text"
               placeholder="doctor@hospital.gob.ni"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
               className="h-12"
             />

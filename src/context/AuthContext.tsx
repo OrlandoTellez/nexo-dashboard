@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 interface User {
   id: string;
   email: string;
-  name: string;
+  username: string;
   role: 'admin' | 'user';
   hospital: string;
 }
@@ -17,17 +17,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Credenciales de prueba
-const DEMO_USERS = [
-  {
-    id: '1',
-    email: 'doctor@hospital.com',
-    password: '123456',
-    name: 'Administrador',
-    role: 'admin' as const,
-    hospital: 'Hospital Nacional Dr. Roberto Huembes'
-  }
-];
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -45,33 +34,36 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (username: string, password: string): Promise<boolean> => {
     setIsLoading(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const foundUser = DEMO_USERS.find(
-      u => u.email === email && u.password === password
-    );
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ username: username, password: password })
+      });
 
-    if (foundUser) {
-      const userData = {
-        id: foundUser.id,
-        email: foundUser.email,
-        name: foundUser.name,
-        role: foundUser.role,
-        hospital: foundUser.hospital
-      };
-      
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
+      console.log(res);
+
+      if (!res.ok) {
+        setIsLoading(false);
+        return false;
+      }
+
+      const data = await res.json();
+      // data.user contiene toda la información
+      setUser(data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
       setIsLoading(false);
       return true;
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+      return false;
     }
-
-    setIsLoading(false);
-    return false;
   };
+
 
   const logout = () => {
     setUser(null);
