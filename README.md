@@ -1,4 +1,4 @@
-# Portal Médico - Sistema Hospitalario de Nicaragua
+# Nexo dashboard
 
 ![React](https://img.shields.io/badge/React-19.1.0-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)
