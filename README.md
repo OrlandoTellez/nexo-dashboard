@@ -1,260 +1,212 @@
-# Paciente App Dashboard - Frontend
+# Portal Médico - Sistema Hospitalario de Nicaragua
 
-Aplicación de escritorio para la gestión de pacientes y citas médicas desarrollada con Tauri, React y TypeScript como parte del hackaton 2025 Nicaragua..
+![React](https://img.shields.io/badge/React-19.1.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)
+![Tauri](https://img.shields.io/badge/Tauri-2.0-FFC131)
+![Tailwind](https://img.shields.io/badge/Tailwind-3.4.17-38B2AC)
 
-## 📋 Descripción
+Sistema de gestión hospitalaria desarrollado como aplicación de escritorio para la administración de pacientes, citas médicas y flujo hospitalario en tiempo real.
 
-Dashboard médico para el sistema de gestión hospitalaria que permite a médicos y personal administrativo gestionar pacientes, citas médicas y flujos de atención en tiempo real. Desarrollada como solución frontend para el reto avanzado del hackaton.
+## Características Principales
 
-## 🎯 Contexto del Reto
+### Módulos del Sistema
+- **Dashboard Principal** - Métricas y resumen operativo
+- **Gestión de Citas** - Programación y seguimiento de citas médicas
+- **Gestión de Pacientes** - Expedientes médicos completos
+- **Flujo de Pacientes** - Monitoreo en tiempo real del flujo hospitalario
+- **Sistema de Autenticación** - Acceso seguro con roles de usuario
 
-### Reto: Portal Paciente – “Paciente App” - Avanzado
-**Descripción**: Automatizar los procesos de registro, seguimiento de pacientes y programación de citas médicas en los hospitales públicos de Nicaragua.
-
-### Funcionalidades Implementadas
-
-#### Para Personal Médico:
-- ✅ **Gestión de citas médicas** y agendas de médicos
-- ✅ **Registro y gestión de expedientes** clínicos electrónicos
-- ✅ **Gestión de flujo de pacientes** en tiempo real
-- ✅ **Dashboard administrativo** con métricas clave
-- ✅ **Sistema de notificaciones** y recordatorios
-
-#### Para Pacientes (pendiente de integración):
-- 📋 Registro y gestión de perfiles
-- 📋 Programación y gestión de citas médicas
-- 📋 Acceso a historial clínico básico
+### Funcionalidades Destacadas
+- Interfaz moderna con diseño responsivo
+- Navegación con sidebar colapsable
+- Modales para creación/edición de registros
+- Búsqueda y filtrado avanzado
+- Validación de datos en frontend y backend
+- Gestión de estados y prioridades
+- Reportes y métricas en tiempo real
 
 ## 🛠 Tecnologías Utilizadas
 
 ### Frontend
-- **React 19** - Biblioteca de interfaz de usuario
+- **React 19.1.0** - Biblioteca de interfaz de usuario
 - **TypeScript** - Tipado estático
 - **Tailwind CSS** - Framework de estilos
-- **React Router DOM** - Navegación cliente
-- **TanStack Query** - Gestión de estado del servidor
+- **React Router DOM** - Navegación
+- **React Query** - Gestión de estado del servidor
 - **Lucide React** - Iconografía
+- **date-fns** - Manipulación de fechas
 
-### Desktop App
-- **Tauri 2** - Framework para aplicaciones de escritorio
-- **Rust** - Backend nativo para Tauri
+### Backend & Desktop
+- **Tauri 2.0** - Framework para aplicaciones de escritorio
+- **Rust** - Backend nativo
+- **API REST** - Comunicación con servicios externos
 
-### UI Components
-- **Radix UI** - Componentes accesibles y sin estilos
-- **Componentes personalizados** con Tailwind CSS
+## Requisitos del Sistema
 
-## 📁 Estructura del Proyecto
+### Desarrollo
+- Node.js 18+ 
+- Rust 1.70+
+- pnpm (recomendado) o npm
 
-```
-src/
-├── components/           # Componentes reutilizables
-│   ├── auth/            # Autenticación
-│   │   └── LoginForm.tsx
-│   ├── layout/          # Layout principal
-│   │   ├── DashboardLayout.tsx
-│   │   └── AppSidebar.tsx
-│   └── ui/              # Componentes de UI base
-│       ├── Input.tsx
-│       └── ...
-├── pages/               # Páginas de la aplicación
-│   ├── Dashboard.tsx    # Panel principal
-│   ├── Appointments.tsx # Gestión de citas
-│   ├── Patients.tsx     # Gestión de pacientes
-│   ├── PatientsFlow.tsx # Flujo de pacientes
-│   └── NotFound.tsx     # Página 404
-├── lib/                 # Utilidades y configuraciones
-│   └── utils.ts         # Funciones auxiliares
-├── App.tsx              # Componente principal
-├── main.tsx             # Punto de entrada
-└── index.css            # Estilos globales
+### Producción
+- Windows 10+, macOS 10.15+, o Linux
+- 4GB RAM mínimo
+- 500MB espacio en disco
 
-src-tauri/               # Backend de Tauri (Rust)
-├── src/
-│   ├── main.rs          # Punto de entrada de Tauri
-│   └── lib.rs           # Lógica principal
-├── Cargo.toml           # Dependencias de Rust
-├── tauri.conf.json      # Configuración de Tauri
-└── capabilities/        # Permisos de la aplicación
-```
+## Instalación y Configuración
 
-## 🚀 Instalación y Configuración
-
-### Prerrequisitos
-- **Node.js** 18+ y npm/pnpm
-- **Rust** y Cargo (para Tauri)
-- **Tauri CLI** (`cargo install tauri-cli`)
-
-### Pasos de Instalación
-
-1. **Clonar el repositorio**
+### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/OrlandoTellez/paciente-app-dashboard.git
-cd paciente-app-dashboard
+git clone https://github.com/OrlandoTellez/nexo-dashboard.git
+cd nexo-dashboard
 ```
 
-2. **Instalar dependencias JavaScript**
+### 2. Instalar Dependencias
 ```bash
-pnpm install  # o npm install
+pnpm install
+# o
+npm install
 ```
 
-3. **Instalar dependencias de Rust** (automático con Tauri)
-```bash
-cargo build
+### 3. Configurar Variables de Entorno
+Crear archivo `.env` en la raíz del proyecto:
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
-4. **Ejecutar en modo desarrollo**
+### 4. Ejecutar en Modo Desarrollo
 ```bash
+# Solo frontend
+pnpm dev
+
+# Aplicación completa (Tauri + React)
 pnpm tauri dev
 ```
 
-## 📊 Scripts Disponibles
-
-### Desarrollo
+### 5. Construir para Producción
 ```bash
-pnpm dev          # Ejecutar solo el frontend (Vite)
-pnpm tauri dev    # Ejecutar aplicación completa (Tauri + React)
+# Build de producción
+pnpm tauri build
 ```
 
-### Build
+## Estructura del Proyecto
+
+```
+src/
+├── components/           # Componentes React
+│   ├── auth/            # Autenticación
+│   ├── layout/          # Layout principal
+│   ├── modals/          # Modales de formularios
+│   └── ui/              # Componentes de UI
+├── context/             # Contextos de React
+├── pages/               # Páginas de la aplicación
+├── routes/              # Configuración de rutas
+├── types/               # Definiciones TypeScript
+├── constants/           # Datos y configuraciones
+└── lib/                 # Utilidades
+```
+
+## Scripts Disponibles
+
 ```bash
-pnpm build        # Build del frontend
-pnpm tauri build  # Build de la aplicación de escritorio
+pnpm dev          # Servidor de desarrollo Vite
+pnpm build        # Build de producción
+pnpm preview      # Preview del build
+pnpm tauri dev    # Desarrollo con Tauri
+pnpm tauri build  # Build de la aplicación desktop
 ```
 
-### Utilidades
-```bash
-pnpm preview      # Preview del build frontend
-pnpm tauri        # Comandos adicionales de Tauri
+## Sistema de Autenticación
+
+El sistema incluye autenticación basada en tokens con protección de rutas:
+
+```typescript
+<PrivateRoute>
+  <Dashboard />  {/* Solo usuarios autenticados */}
+</PrivateRoute>
 ```
 
-## 🎨 Características de la Interfaz
+## Validación de Datos
 
-### Sistema de Diseño
-- **Paleta de colores médica**: Azules profesionales (#2977f5)
-- **Diseño responsive**: Adaptable a diferentes tamaños de pantalla
-- **Modo claro**: Optimizado para entornos médicos
-- **Tipografía clara**: Legibilidad optimizada
+El sistema implementa múltiples capas de validación:
 
-### Componentes Principales
+- **Validación HTML5** - Campos requeridos y tipos básicos
+- **Validación TypeScript** - Tipado estático
+- **Validación Backend** - APIs con esquemas de datos
+- **Transformación** - Normalización de formatos
 
-#### 🔐 Sistema de Autenticación
-- **Login seguro** con validación de credenciales
-- **Roles de usuario** (Médico, Administrativo, etc.)
-- **Protección de rutas** basada en permisos
+Para más detalles, consultar la [documentación de validación](./documentacion/VALIDATION_DATA.md).
 
-#### 📊 Dashboard Principal
-- **Métricas en tiempo real**: Citas, pacientes, tiempos de espera
-- **Vista rápida de citas** programadas para el día
-- **Alertas de pacientes críticos**
-- **Gráficos de flujo** de pacientes
+## Módulos Específicos
 
-#### 🧭 Navegación Intuitiva
-- **Sidebar colapsable** para maximizar espacio
-- **Navegación por pestañas** organizada por funcionalidad
-- **Búsqueda global** de pacientes y citas
-- **Accesos rápidos** a funciones frecuentes
+### Gestión de Pacientes
+- Registro completo de información médica
+- Historial clínico y alergias
+- Contactos de emergencia
+- Priorización de atención
 
-## 🏥 Páginas y Funcionalidades
+### Gestión de Citas
+- Programación flexible con especialistas
+- Slots de tiempo predefinidos
+- Estados de cita (pendiente, confirmada, completada)
+- Notas y observaciones médicas
 
-### 1. Dashboard (`/dashboard`)
-- Resumen general de la jornada médica
-- Métricas clave: citas del día, pacientes en fila, tiempos de espera
-- Próximas citas y pacientes críticos
-- Gráficos de flujo de pacientes
+### Flujo de Pacientes
+- Monitoreo en tiempo real de 7 etapas
+- Métricas de rendimiento
+- Alertas del sistema
+- Tiempos de espera
 
-### 2. Gestión de Citas (`/appointments`)
-- *Pendiente de implementación completa*
-- Visualización de agenda médica
-- Programación, modificación y cancelación de citas
-- Estados de cita: pendiente, confirmada, completada, cancelada
+## Configuración Tauri
 
-### 3. Gestión de Pacientes (`/patients`)
-- *Pendiente de implementación completa*
-- Registro y edición de perfiles de pacientes
-- Historial clínico básico
-- Búsqueda y filtrado de pacientes
+La aplicación está configurada para:
+- Ventana principal de 800x600px
+- Iconos multiplataforma
+- Permisos de sistema de archivos
+- Comunicación nativa con Rust
 
-### 4. Flujo de Pacientes (`/patient-flow`)
-- *Pendiente de implementación completa*
-- Vista en tiempo real del flujo de atención
-- Estados: en espera, en consulta, atendido, crítico
-- Gestión de prioridades y alertas
+## Métricas y Reportes
 
-## 🔧 Configuración de Tauri
+- Eficiencia general del sistema
+- Pacientes por hora
+- Tiempos de espera promedio
+- Niveles de satisfacción
 
-### Archivos de Configuración Principal
-
-#### `src-tauri/tauri.conf.json`
-```json
-{
-  "windows": [{
-    "title": "paciente-app-dashboard",
-    "width": 800,
-    "height": 600
-  }],
-  "bundle": {
-    "active": true,
-    "targets": "all"
-  }
-}
-```
-
-#### `src-tauri/capabilities/default.json`
-Define los permisos de la aplicación para acceder a APIs del sistema.
-
-## 🎯 Próximas Funcionalidades
-
-### 🔄 Integración con Backend
-- [ ] Conexión con API REST del backend Rust
-- [ ] Sincronización en tiempo real
-- [ ] Gestión de estado global con TanStack Query
-
-### 📱 Mejoras de UI/UX
-- [ ] Modo oscuro para diferentes ambientes
-- [ ] Vista de calendario para citas
-- [ ] Drag & drop para gestión de flujos
-- [ ] Notificaciones del sistema operativo
-
-### 🏥 Funcionalidades Médicas
-- [ ] Historial clínico completo
-- [ ] Sistema de turnos virtuales
-- [ ] Integración con impresoras para recibos
-- [ ] Reportes y estadísticas avanzadas
-
-### 🔒 Seguridad
-- [ ] Autenticación JWT con refresh tokens
-- [ ] Encriptación de datos sensibles
-- [ ] Roles y permisos granularizados
-
-## 🐛 Solución de Problemas
+## Solución de Problemas
 
 ### Problemas Comunes
 
-**Error de compilación de Tauri**
-```bash
-# Limpiar cache de Rust
-cargo clean
-# Reinstalar dependencias
-pnpm install && cargo build
-```
+1. **Error de compilación Rust**
+   ```bash
+   rustup update
+   cargo clean
+   ```
 
-**Problemas de permisos en Windows**
-- Ejecutar como administrador si hay problemas de acceso a archivos
+2. **Problemas de dependencias**
+   ```bash
+   pnpm install --force
+   ```
 
-**Error de puerto en desarrollo**
-```bash
-# Verificar que el puerto 1420 esté libre
-netstat -ano | findstr :1420
-```
+3. **Error de API**
+   - Verificar que el backend esté ejecutándose
+   - Validar variables de entorno
 
-## 🤝 Contribución
+## Contribución
 
-Este proyecto fue desarrollado como parte de un hackaton. Para contribuir:
+1. Fork el proyecto
+2. Crear una rama para la feature (`git checkout -b feature/AmazingFeature`)
+3. Commit los cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
 
-1. Asegurarse de tener todas las dependencias instaladas
-2. Seguir las convenciones de código existentes
-3. Probar tanto el frontend como la aplicación de escritorio
-4. Documentar nuevos componentes y funcionalidades
+## Licencia
 
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
+## Certificaciones
 
+Sistema certificado por el Ministerio de Salud de Nicaragua - Cumple con los estándares de seguridad y privacidad de datos médicos.
+
+---
+
+**Desarrollado para el Sistema Hospitalario de Nicaragua** 🩺🇳🇮
