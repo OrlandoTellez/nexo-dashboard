@@ -1,20 +1,5 @@
 import { Row } from "./Row";
-
-interface Patient {
-  id: number;
-  name: string;
-  cedula: string;
-  age: number;
-  gender: string;
-  phone: string;
-  address: string;
-  bloodType: string;
-  condition: string;
-  priority: string;
-  status: string;
-  lastVisit: string;
-  doctor: string;
-}
+import { Patient } from "../../../types/Patient";
 
 interface Props {
   patients: Patient[];
@@ -33,15 +18,25 @@ export const PatientTable = ({ patients, statusConfig, priorityConfig }: Props) 
         <tr>
           <th className="p-3 text-left font-medium">Paciente</th>
           <th className="p-3 text-left font-medium">Información</th>
-          <th className="p-3 text-left font-medium">Condición</th>
           <th className="p-3 text-left font-medium">Prioridad</th>
           <th className="p-3 text-left font-medium">Estado</th>
           <th className="p-3 text-left font-medium">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        {patients.map(p => <Row key={p.id} patient={p} statusConfig={statusConfig} priorityConfig={priorityConfig} />)}
+        {patients
+          .slice()
+          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .map(p => (
+            <Row
+              key={p.id_patient}
+              patient={p}
+              statusConfig={statusConfig}
+              priorityConfig={priorityConfig}
+            />
+          ))}
       </tbody>
+
     </table>
   </div>
 );
